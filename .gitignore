@@ -1,0 +1,21 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# Tauri / Rust
+src-tauri/target/
+src-tauri/gen/
+
+# logs & misc
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Claude Code internals (keep launch.json for the preview runner)
+.claude/worktrees/
+.claude/settings.local.json

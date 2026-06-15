@@ -1,0 +1,125 @@
+---
+import Base from "../layouts/Base.astro";
+
+const tools = [
+  {
+    href: "/json/",
+    name: "JSON",
+    desc: "Format, minify, validate and explore JSON as a tree.",
+    glyph: "{ }",
+  },
+  {
+    href: "/convert/",
+    name: "Convert",
+    desc: "JSON ↔ YAML ↔ CSV, both directions.",
+    glyph: "⇄",
+  },
+  {
+    href: "/markdown/",
+    name: "Markdown",
+    desc: "Live preview, edit↔view toggle, export to clean PDF.",
+    glyph: "↓",
+  },
+];
+---
+
+<Base
+  title="DevPad — fast, offline JSON & Markdown developer tools"
+  description="A fast, local-only developer scratchpad: format & validate JSON, convert JSON/YAML/CSV, edit Markdown with live preview and PDF export. Runs entirely in your browser — nothing is uploaded."
+  active="home"
+>
+  <section class="py-10 text-center">
+    <h1 class="text-3xl sm:text-4xl font-bold tracking-tight">
+      Developer tools that never upload your data
+    </h1>
+    <p class="mt-3 text-[var(--color-muted)] max-w-2xl mx-auto">
+      Format JSON, convert between JSON/YAML/CSV, and write Markdown — all
+      running locally in your browser. No accounts, no servers, no telemetry.
+    </p>
+  </section>
+
+  <section class="grid gap-4 sm:grid-cols-3">
+    {
+      tools.map((t) => (
+        <a
+          href={t.href}
+          class="group rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-colors hover:border-[var(--color-accent)]"
+        >
+          <div class="font-mono text-2xl text-[var(--color-accent)]">
+            {t.glyph}
+          </div>
+          <h2 class="mt-3 font-semibold">{t.name}</h2>
+          <p class="mt-1 text-sm text-[var(--color-muted)]">{t.desc}</p>
+        </a>
+      ))
+    }
+  </section>
+
+  <section
+    class="mt-12 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8"
+  >
+    <h2 class="text-xl font-bold">
+      “Really offline? That's impossible…”
+    </h2>
+    <p class="mt-2 text-[var(--color-muted)]">
+      Try it yourself — it takes 20 seconds:
+    </p>
+
+    <ol class="mt-5 space-y-3">
+      {
+        [
+          {
+            n: 1,
+            t: "Open a tool",
+            d: "Load any DevPad tool above. That's the only network request — the whole app is now in your browser.",
+          },
+          {
+            n: 2,
+            t: "Turn off your Wi-Fi",
+            d: "Go fully offline. From here on, no upload to any server is even possible.",
+          },
+          {
+            n: 3,
+            t: "Drag in any .json or .md file",
+            d: "Or just paste your data. Format, validate, convert, or export it to PDF — while disconnected.",
+          },
+          {
+            n: 4,
+            t: "See it work",
+            d: "Everything runs. Your file never left the device. Yes, that works!",
+          },
+        ].map((s) => (
+          <li class="flex gap-4">
+            <span
+              class="shrink-0 size-7 grid place-items-center rounded-full border border-[var(--color-accent)] text-[var(--color-accent)] font-mono text-sm"
+              aria-hidden="true"
+            >
+              {s.n}
+            </span>
+            <div>
+              <div class="font-medium">{s.t}</div>
+              <div class="text-sm text-[var(--color-muted)]">{s.d}</div>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div
+      class="mt-6 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-4 text-sm text-[var(--color-muted)]"
+    >
+      <div class="font-medium text-[var(--color-fg)]">How is this possible?</div>
+      <p class="mt-1">
+        DevPad ships as a <strong>static site</strong> — plain HTML &amp;
+        JavaScript with <strong>no backend</strong>. When you open a tool, that
+        code is downloaded <em>once</em> and then runs entirely on your own CPU.
+        Parsing, conversion and PDF export are pure browser JavaScript; your
+        files are read locally through the browser's File API and are
+        <strong>never sent anywhere</strong>. There is no server to upload to —
+        which is exactly why it keeps working with the Wi-Fi off. Install it as a
+        PWA (or grab the macOS app) and even the first load is cached for true,
+        permanent offline use.
+      </p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,19 @@
+---
+import Base from "../layouts/Base.astro";
+import { ConvertTool } from "../components/ConvertTool";
+---
+
+<Base
+  title="JSON ↔ YAML ↔ CSV Converter — DevPad"
+  description="Convert between JSON, YAML and CSV in any direction, instantly and locally. Your data never leaves your browser — nothing is uploaded."
+  active="convert"
+>
+  <div class="mb-4">
+    <h1 class="text-2xl font-bold">Convert</h1>
+    <p class="text-sm text-[var(--color-muted)]">
+      JSON ↔ YAML ↔ CSV, both directions — converted live in your browser.
+    </p>
+  </div>
+
+  <ConvertTool client:only="react" />
+</Base>

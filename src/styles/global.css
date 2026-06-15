@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+/* DevPad design tokens — dark, developer-tool aesthetic. */
+@theme {
+  --color-bg: #0d1117;
+  --color-surface: #161b22;
+  --color-border: #30363d;
+  --color-fg: #e6edf3;
+  --color-muted: #8b949e;
+  --color-accent: #58a6ff;
+  --color-accent-fg: #ffffff;
+  --color-ok: #3fb950;
+  --color-err: #f85149;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Rendered Markdown preview — Tailwind's preflight strips default element
+   styling, and this HTML is injected raw, so style it explicitly here. */
+.md-preview {
+  line-height: 1.7;
+}
+.md-preview .md-block {
+  scroll-margin-top: 1rem;
+}
+.md-preview h1,
+.md-preview h2,
+.md-preview h3 {
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 1.4em 0 0.5em;
+}
+.md-preview h1 {
+  font-size: 1.8em;
+}
+.md-preview h2 {
+  font-size: 1.4em;
+}
+.md-preview h3 {
+  font-size: 1.15em;
+}
+.md-preview p,
+.md-preview ul,
+.md-preview ol,
+.md-preview blockquote,
+.md-preview pre,
+.md-preview table {
+  margin: 0 0 1em;
+}
+.md-preview ul,
+.md-preview ol {
+  padding-left: 1.5em;
+}
+.md-preview ul {
+  list-style: disc;
+}
+.md-preview ol {
+  list-style: decimal;
+}
+.md-preview a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+.md-preview code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--color-bg);
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+}
+.md-preview pre {
+  background: var(--color-bg);
+  padding: 1em;
+  border-radius: 8px;
+  overflow: auto;
+}
+.md-preview pre code {
+  background: none;
+  padding: 0;
+}
+.md-preview blockquote {
+  border-left: 3px solid var(--color-border);
+  padding-left: 1em;
+  color: var(--color-muted);
+}
+.md-preview table {
+  border-collapse: collapse;
+}
+.md-preview th,
+.md-preview td {
+  border: 1px solid var(--color-border);
+  padding: 0.4em 0.7em;
+}
+.md-preview img {
+  max-width: 100%;
+}

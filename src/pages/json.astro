@@ -1,0 +1,20 @@
+---
+import Base from "../layouts/Base.astro";
+import { JsonTool } from "../components/JsonTool";
+---
+
+<Base
+  title="JSON Formatter, Validator & Tree Viewer — DevPad"
+  description="Format, minify and validate JSON, check it against a JSON Schema, and explore it as a collapsible tree. Runs entirely in your browser — your data is never uploaded."
+  active="json"
+>
+  <div class="mb-4">
+    <h1 class="text-2xl font-bold">JSON</h1>
+    <p class="text-sm text-[var(--color-muted)]">
+      Format, minify, validate against a schema, and explore as a tree — all
+      locally in your browser.
+    </p>
+  </div>
+
+  <JsonTool client:only="react" />
+</Base>

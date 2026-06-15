@@ -1,0 +1,109 @@
+---
+import "../styles/global.css";
+import { TauriBootstrap } from "../components/TauriBootstrap";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Active nav key for highlighting. */
+  active?: "home" | "json" | "convert" | "markdown";
+}
+
+const { title, description, active } = Astro.props;
+
+const nav = [
+  { key: "json", label: "JSON", href: "/json/" },
+  { key: "convert", label: "Convert", href: "/convert/" },
+  { key: "markdown", label: "Markdown", href: "/markdown/" },
+] as const;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#0d1117" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    {/* Register the offline service worker (production builds only — it would
+        interfere with the dev server's hot-reload). */}
+    {
+      import.meta.env.PROD && (
+        <script
+          is:inline
+          set:html={`if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){})})}`}
+        />
+      )
+    }
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <header
+      class="border-b border-[var(--color-border)] bg-[var(--color-surface)]"
+    >
+      <div
+        class="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between gap-4"
+      >
+        <a href="/" class="flex items-center gap-2 font-semibold">
+          <span class="text-[var(--color-accent)] font-mono">{"{ }"}</span>
+          <span>DevPad</span>
+        </a>
+        <nav class="flex items-center gap-1 text-sm">
+          {
+            nav.map((item) => (
+              <a
+                href={item.href}
+                class:list={[
+                  "px-3 py-1.5 rounded-md transition-colors hover:bg-[var(--color-bg)]",
+                  active === item.key
+                    ? "text-[var(--color-accent)] bg-[var(--color-bg)]"
+                    : "text-[var(--color-muted)]",
+                ]}
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-1 mx-auto w-full max-w-6xl px-4 py-6">
+      <slot />
+    </main>
+
+    <TauriBootstrap client:only="react" />
+
+    <footer
+      class="border-t border-[var(--color-border)] text-[var(--color-muted)] text-xs"
+    >
+      <div
+        class="mx-auto max-w-6xl px-4 py-4 flex flex-wrap items-center gap-x-4 gap-y-1"
+      >
+        <span
+          class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-[var(--color-border)]"
+        >
+          <span
+            class="size-1.5 rounded-full bg-[var(--color-ok)]"
+            aria-hidden="true"></span>
+          Runs 100% in your browser
+        </span>
+        <span
+          class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-[var(--color-border)]"
+        >
+          <span
+            class="size-1.5 rounded-full bg-[var(--color-ok)]"
+            aria-hidden="true"></span>
+          No upload · your files never leave your device
+        </span>
+        <span class="ml-auto">DevPad — local-only developer tools</span>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+---
+import Base from "../layouts/Base.astro";
+import { MarkdownTool } from "../components/MarkdownTool";
+---
+
+<Base
+  title="Markdown Editor with Live Preview & PDF Export — DevPad"
+  description="Write Markdown with live preview, flip edit↔view with your scroll position kept (⌘E), and export a clean PDF. Runs entirely in your browser — nothing is uploaded."
+  active="markdown"
+>
+  <div class="mb-4">
+    <h1 class="text-2xl font-bold">Markdown</h1>
+    <p class="text-sm text-[var(--color-muted)]">
+      Live preview, <kbd
+        class="rounded border border-[var(--color-border)] px-1 text-xs"
+        >⌘E</kbd
+      > edit↔view toggle (keeps your scroll), and clean PDF export.
+    </p>
+  </div>
+
+  <MarkdownTool client:only="react" />
+</Base>
