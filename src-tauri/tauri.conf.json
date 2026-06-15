@@ -36,20 +36,6 @@
       "icons/icon.icns",
       "icons/icon.ico"
     ],
-    "fileAssociations": [
-      {
-        "ext": ["json"],
-        "name": "JSON Document",
-        "description": "JSON file",
-        "role": "Editor"
-      },
-      {
-        "ext": ["md", "markdown"],
-        "name": "Markdown Document",
-        "description": "Markdown file",
-        "role": "Editor"
-      }
-    ],
     "android": {
       "debugApplicationIdSuffix": ".debug"
     }
