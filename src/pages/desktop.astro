@@ -1,0 +1,100 @@
+---
+import Base from "../layouts/Base.astro";
+
+const steps = [
+  {
+    n: 1,
+    t: "Move DevPad to Applications",
+    d: "Drag DevPad.app into your /Applications folder so macOS registers it permanently.",
+  },
+  {
+    n: 2,
+    t: "Get Info on a file",
+    d: "In Finder, right-click any .md (or .json) file and choose “Get Info” (or press ⌘I).",
+  },
+  {
+    n: 3,
+    t: "Open the “Open with” section",
+    d: "In the Info window, expand “Open with:” and pick DevPad. If it isn't listed, choose “Other…” and select DevPad.app.",
+  },
+  {
+    n: 4,
+    t: "Click “Change All…”",
+    d: "This is the important step — it makes every file of that type open in DevPad, not just this one. Confirm the dialog.",
+  },
+  {
+    n: 5,
+    t: "Repeat for the other type",
+    d: "Do the same with a .json file (or .md) so both open in DevPad on double-click.",
+  },
+];
+---
+
+<Base
+  title="DevPad for macOS — set as default for .md & .json"
+  description="Install the DevPad macOS app and make it the default editor for Markdown and JSON files, so a double-click in Finder opens them straight in DevPad."
+>
+  <div class="mb-6">
+    <h1 class="text-2xl font-bold">DevPad for macOS</h1>
+    <p class="mt-1 text-[var(--color-muted)] max-w-2xl">
+      The native app is the same tools as the website, plus it opens
+      <code class="font-mono">.md</code> and <code class="font-mono">.json</code>
+      files from disk — double-click a file in Finder and it opens right here.
+      Everything still runs locally; nothing is uploaded.
+    </p>
+  </div>
+
+  <section
+    class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8"
+  >
+    <h2 class="text-xl font-bold">
+      Make DevPad the default for <code class="font-mono">.md</code> &amp;
+      <code class="font-mono">.json</code>
+    </h2>
+    <p class="mt-2 text-sm text-[var(--color-muted)]">
+      The right-click ▸ “Open with ▸ DevPad” menu opens a file <em>once</em>. To
+      open every Markdown/JSON file on double-click, set DevPad as the default:
+    </p>
+
+    <ol class="mt-5 space-y-3">
+      {
+        steps.map((s) => (
+          <li class="flex gap-4">
+            <span
+              class="shrink-0 size-7 grid place-items-center rounded-full border border-[var(--color-accent)] text-[var(--color-accent)] font-mono text-sm"
+              aria-hidden="true"
+            >
+              {s.n}
+            </span>
+            <div>
+              <div class="font-medium">{s.t}</div>
+              <div class="text-sm text-[var(--color-muted)]">{s.d}</div>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <p
+      class="mt-6 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-4 text-sm text-[var(--color-muted)]"
+    >
+      <span class="font-medium text-[var(--color-fg)]">Tip:</span> after this, a
+      double-click on a <code class="font-mono">.json</code> file opens DevPad's
+      JSON tool with the file loaded; a <code class="font-mono">.md</code> file
+      opens the Markdown tool — the right tool is chosen automatically from the
+      extension.
+    </p>
+  </section>
+
+  <section class="mt-6 text-sm text-[var(--color-muted)]">
+    <h2 class="text-base font-semibold text-[var(--color-fg)]">
+      Building the app
+    </h2>
+    <p class="mt-1">
+      DevPad's macOS app is built with Tauri (a small Rust shell around the same
+      web UI), so the download is tiny compared to Electron apps. Build it
+      locally with <code class="font-mono">npm run tauri build</code> — see the
+      project README.
+    </p>
+  </section>
+</Base>

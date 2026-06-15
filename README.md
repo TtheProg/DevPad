@@ -6,6 +6,10 @@ No accounts. No servers. No telemetry. Your files never leave your device.
 
 > _Live demo:_ _(deploy pending)_ · _macOS app:_ build a `.dmg` locally with `npm run tauri build` (see below)
 
+![DevPad running as a native macOS app](docs/gallery/hero.png)
+
+_More screenshots & clips in **[Gallery.md](Gallery.md)**._
+
 ---
 
 ## Why DevPad
