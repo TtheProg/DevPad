@@ -19,3 +19,6 @@ src-tauri/gen/
 # Claude Code internals (keep launch.json for the preview runner)
 .claude/worktrees/
 .claude/settings.local.json
+
+# raw, unprocessed showcase media drop (originals; cut versions live in docs/gallery)
+_media_in/
